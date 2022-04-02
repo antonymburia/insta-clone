@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'clone.apps.CloneConfig',
     'bootstrap4',
+    'tinymce',
     
 ]
 
