@@ -2,12 +2,49 @@
 {% block content %}
 
 {{block.super}}
-<h1>
- hello
-</h1>
-<img src="/media/images/pizza-6537603_1920.jpg" alt="y">
+<div class="container-fluid">
+ <div class="row">
+  {%for post in posts %}
+  <div class="col-md-2"></div>
+  <div class="col-md-4">
+   <div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+     <div class="img">
+      <img src="{{post.image.url}}" alt="jjj">
+     </div>
+     <div class="desc">
+      {{post.content}}
+     </div>
+    </div>
+    <div class="card-footer"></div>
+   </div>
+  </div>
+  <div class="col-md-4">
+   <img src="static/design-3061370_1920-removebg-preview.png" alt="nh">
+  
+  </div>
+  <div class="col-md-2"></div>
+  {%endfor%}
+ </div>
+</div>
+
 
 <style>
- h1{margin-top: 10%;}
+ .container-fluid{margin-top: 5%;}
+ .card{
+  width: 100%;
+
+ }
+ .card-header{
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+ }
+ .card-footer{
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+ }
 </style>
 {%endblock%}

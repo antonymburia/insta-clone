@@ -3,11 +3,14 @@ from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
 from .forms import NewPostForm
+from .models import User,Post,Comment,Like
+
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-    return render(request,'index.html')
+    posts = Post.all_posts ()
+    return render(request,'index.html',{'posts':posts})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):

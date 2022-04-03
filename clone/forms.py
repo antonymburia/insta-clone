@@ -1,8 +1,8 @@
-from .models import Post
+from .models import  Post
 from django import forms
 
 class NewPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        exclude = ['user', 'pub_date']
+        exclude = ['user', 'pub_date','likes', 'unlikes','comments']
         

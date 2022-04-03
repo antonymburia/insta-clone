@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from cloudinary.models import CloudinaryField
+
 
 class User(models.Model):
     first_name = models.CharField(max_length =30)
@@ -12,12 +14,10 @@ class User(models.Model):
 
 class Post(models.Model):
     content = models.TextField()
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
-    post_image = models.ImageField(upload_to='posts/', blank=True)
-    likes = models.ForeignKey('Like',on_delete = models.CASCADE,default=None)
-    unlikes = models.ForeignKey('Unlike',on_delete = models.CASCADE,default=None)
-    comments = models.ForeignKey('Comment', on_delete = models.CASCADE,default=None)
+    post_image = CloudinaryField('image')
+    
 
 
     def save_post(self):
@@ -25,6 +25,8 @@ class Post(models.Model):
              
     def delete_post(self):
      self.delete()
+    def __str__(self):
+        return self.user
     
     @classmethod
     def all_posts(cls):
@@ -46,39 +48,42 @@ class Post(models.Model):
      return post
 
 class Comment(models.Model):
- comment = models.CharField(max_length = 200)
+    post = models.ForeignKey('Post',related_name='comments',on_delete=models.CASCADE,default=None)
+    comment = models.CharField(max_length = 200,  blank=True)
 
 
- def save_comment(self):
-  self.save()
+    def save_comment(self):
+        self.save()
 
- @classmethod
- def get_comments(cls):
-  comments=cls.objects.all()
-  return comments
+    @classmethod
+    def get_comments(cls):
+        comments=cls.objects.all()
+        return comments
 
 class Like(models.Model):
- 
- likes = models.IntegerField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,default=None)
+    likes = models.IntegerField(  blank=True)
 
- def add_like(self):
-  self.save()
+    def add_like(self):
+        self.save()
 
 
-  def __str__(self):
-   return self.likes
+    def __str__(self):
+        return self.likes
 
 
 class Unlike(models.Model):
- 
- unlikes = models.IntegerField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,default=None)
+    unlikes = models.IntegerField(blank=True)
 
- def add_unlike(self):
-  self.save()
+    def add_unlike(self):
+        self.save()
 
 
-  def __str__(self):
-   return self.unlikes
+    def __str__(self):
+        return self.unlikes
 
     
 
