@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
-from .forms import NewPostForm
+from .forms import NewPostForm,ProfileUpdateForm
 from .models import User,Post,Comment,Like
+from django.core.checks import messages
 
 
 # Create your views here.
@@ -27,6 +28,10 @@ def new_post(request):
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form})
 
+def profile(request):
+    user = request.user
+
+    return render(request, 'profile.html',{'user':user})
 
 
 

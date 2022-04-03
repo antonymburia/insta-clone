@@ -1,0 +1,46 @@
+{% extends 'registration/base.html' %}
+
+
+{% block content %}
+{{block.super}}
+
+<div class="container">
+ <div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-4">
+   <div class="profile-pic">
+    <img src="{{user.profile_pic.url}}" alt="profile">
+   </div>
+  </div>
+  <div class="col-md-4">
+   <div class="prof">
+    <h3><b>{{user.username}}</b></h3>
+   <button class="update">Update Profile</button>
+   </div>
+   <div class="bio">
+    <h3><b>Bio</b></h3>
+    {{user.email}}
+
+   </div>
+  </div>
+  <div class="col-md-2"></div>
+ </div>
+
+ 
+ 
+</div>
+<style>
+ .container{
+  margin-top: 5%;
+  background-color: rgb(250,250,250); 
+ }
+ .prof{
+  display: flex;
+ }
+ .update{
+  margin: 2%;
+  border: 1px solid rgb(219,219,219);
+ }
+</style>
+
+{% endblock %}

@@ -8,13 +8,15 @@ class User(models.Model):
     first_name = models.CharField(max_length =30)
     last_name = models.CharField(max_length =30)
     email = models.EmailField()
+    posts = models.ForeignKey('Post',on_delete=models.CASCADE,default=None)
     profile_pic = models.ImageField(upload_to='profile/', blank=True)
+
+
     def __str__(self):
         return self.first_name
 
 class Post(models.Model):
     content = models.TextField()
-    user = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     post_image = CloudinaryField('image')
     
