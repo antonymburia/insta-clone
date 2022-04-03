@@ -15,7 +15,7 @@ class Post(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     post_image = models.ImageField(upload_to='articles/', blank=True)
-    likes = models.ForeignKey('Likes',on_delete = models.CASCADE,default=None)
+    likes = models.ForeignKey('Like',on_delete = models.CASCADE,default=None)
     unlikes = models.ForeignKey('Unlike',on_delete = models.CASCADE,default=None)
     comments = models.ForeignKey('Comment', on_delete = models.CASCADE,default=None)
 
@@ -46,9 +46,8 @@ class Post(models.Model):
      return post
 
 class Comment(models.Model):
- comment = models.CharField()
- user = models.ForeignKey('User',on_delete=models.CASCADE)
- post = models.ForeignKey('Post',on_delete=models.CASCADE)
+ comment = models.CharField(max_length = 200)
+
 
  def save_comment(self):
   self.save()
@@ -59,8 +58,7 @@ class Comment(models.Model):
   return comments
 
 class Like(models.Model):
- user = models.ForeignKey('User',on_delete=models.CASCADE)
- post = models.ForeignKey('Post',on_delete=models.CASCADE)
+ 
  likes = models.IntegerField()
 
  def add_like(self):
@@ -72,8 +70,7 @@ class Like(models.Model):
 
 
 class Unlike(models.Model):
- user = models.ForeignKey('User',on_delete=models.CASCADE)
- post = models.ForeignKey('Post',on_delete=models.CASCADE)
+ 
  unlikes = models.IntegerField()
 
  def add_unlike(self):
