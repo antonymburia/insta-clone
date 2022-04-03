@@ -127,10 +127,10 @@
        <a href="#">Settings</a>
       </li>
       {% if user.is_authenticated %}
-      <li style="border-top:2px solid #dbdbdb;"><a href="#">Log Out</a>
+      <li style="border-top:2px solid #dbdbdb;"><a href="/logout">Log Out</a>
       </li>
       {% else %}
-      <li style="border-top:2px solid #dbdbdb;"><a href="#">Log in</a>
+      <li style="border-top:2px solid #dbdbdb;"><a href="/accounts/login">Log in</a>
       </li>
       {% endif %}
      </ul>
