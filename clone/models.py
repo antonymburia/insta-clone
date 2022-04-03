@@ -6,7 +6,7 @@ class User(models.Model):
     first_name = models.CharField(max_length =30)
     last_name = models.CharField(max_length =30)
     email = models.EmailField()
-
+    profile_pic = models.ImageField(upload_to='profile/', blank=True)
     def __str__(self):
         return self.first_name
 
@@ -14,7 +14,7 @@ class Post(models.Model):
     content = models.TextField()
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
-    post_image = models.ImageField(upload_to='articles/', blank=True)
+    post_image = models.ImageField(upload_to='posts/', blank=True)
     likes = models.ForeignKey('Like',on_delete = models.CASCADE,default=None)
     unlikes = models.ForeignKey('Unlike',on_delete = models.CASCADE,default=None)
     comments = models.ForeignKey('Comment', on_delete = models.CASCADE,default=None)
