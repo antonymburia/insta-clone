@@ -38,4 +38,4 @@ Contact me via
 * antonymburia10@gmail.com
 
 ## Live link
-https://mygallery-00.herokuapp.com/
+https://insta-clone-ig-001.herokuapp.com/
