@@ -1,3 +1,4 @@
+
 {% load bootstrap4 %}
 <!DOCTYPE html>
 <html>
@@ -16,12 +17,14 @@
 
 <body>
 
+<div class="container">
  <form action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
   {%csrf_token%}
 
   {% bootstrap_form form%}
-  <input type="submit" class="btn btn-success btn-lg" value="Post">
+  <input type="submit" class="btn btn-primary btn-lg" value="Post">
  </form>
+</div>
 
  {% block scripts %}
  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
