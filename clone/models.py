@@ -11,6 +11,11 @@ class User(models.Model):
     posts = models.ForeignKey('Post',on_delete=models.CASCADE,default=None)
     profile_pic = models.ImageField(upload_to='profile/', blank=True)
 
+    @classmethod
+    def get_users(cls):
+        users=cls.objects.all()
+        return users
+
 
     def __str__(self):
         return self.first_name

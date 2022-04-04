@@ -10,8 +10,9 @@ from django.core.checks import messages
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-    posts = Post.all_posts ()
-    return render(request,'index.html',{'posts':posts})
+    posts = Post.all_posts()
+    users = User.get_users()
+    return render(request,'index.html',{'posts':posts, 'users':users})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
