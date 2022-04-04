@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,login
-from .forms import NewPostForm,UserUpdateForm,CreateUserForm
+from .forms import NewPostForm,UserUpdateForm,CommentForm
 from .models import User,Post,Comment,Like
 from django.core.checks import messages
 from django.contrib.auth.models import User
@@ -12,6 +12,23 @@ from django.contrib.auth.models import User
 def home(request):
     posts = Post.all_posts()
     users = User.objects.all()
+
+    # post_id = request.POST.get('post_id')
+    # post_object = Post.objects.get(id= post_id)
+    # form = CommentForm(request.POST,instance=post)
+    # if request.method == "POST":
+    #     if form.is_valid():
+    #         post = request.user.username
+    #         comment = form.cleaned_data['comment']
+    #         newcomment = Comment(post = post,comment =comment)
+    #         newcomment.save()
+    #         return redirect('index')
+    #     else:
+    #         print('form is invalid')
+    # else:
+    #     form = CommentForm
+
+    
     return render(request,'index.html',{'posts':posts, 'users':users})
 
 # def register(request):
@@ -82,3 +99,5 @@ def like(request):
                 like.value = 'Like'
         like.save()
     return redirect(home)
+
+    

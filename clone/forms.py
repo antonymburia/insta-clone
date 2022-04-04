@@ -1,4 +1,4 @@
-from .models import  Post,Profile
+from .models import  Post,Comment
 from django import forms
 from django.contrib.auth.models import User
 
@@ -8,6 +8,12 @@ class NewPostForm(forms.ModelForm):
         model = Post
         exclude = [ 'pub_date','liked', 'comments']
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment',]
+        
+        
 class CreateUserForm(forms.ModelForm):
     class Meta:
         widgets = {
