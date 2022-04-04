@@ -1,8 +1,9 @@
 {% extends 'registration/base.html' %}
-
-
+{% load bootstrap4 %}
+{{form.media}}
 {% block content %}
 {{block.super}}
+
 
 <div class="container">
  <div class="row">
@@ -15,7 +16,7 @@
   <div class="col-md-4">
    <div class="prof">
     <h3><b>{{user.username}}</b></h3>
-   <button class="update">Update Profile</button>
+    <button class="update">Update Profile</button>
    </div>
    <div class="bio">
     <h3><b>Bio</b></h3>
@@ -26,20 +27,53 @@
   <div class="col-md-2"></div>
  </div>
 
- 
- 
+ <div class="col-md-3 frm">
+  {% if form.errors %}
+  <p> Password or Username is incorrect </p>
+  {% endif %}
+  <div class="panel panel-default">
+   <div class="panel-body">
+    <div class="brand">Insta Clone</h3>
+    </div>
+
+
+
+    <form action="{%url 'profile'%}" method="post">
+     {% csrf_token %}
+     {% bootstrap_form form%}
+
+     <div class="login-form">
+      <div class="form-group">
+       <input type="submit" class="login btn btn-primary btn-sm" value="Update">
+
+      </div>
+
+      <input type="hidden" name="next" value="{{next}}">
+
+
+    </form>
+   </div>
+
+
+
+  </div>
+
+ </div>
+
 </div>
 <style>
- .container{
+ .container {
   margin-top: 5%;
-  background-color: rgb(250,250,250); 
+  background-color: rgb(250, 250, 250);
  }
- .prof{
+
+ .prof {
   display: flex;
  }
- .update{
+
+ .update {
   margin: 2%;
-  border: 1px solid rgb(219,219,219);
+  border: 1px solid rgb(219, 219, 219);
  }
 </style>
 

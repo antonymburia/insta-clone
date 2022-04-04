@@ -1,5 +1,6 @@
 from .models import  Post,User
 from django import forms
+# from django.contrib.auth.models import User
 
 class NewPostForm(forms.ModelForm):
     class Meta:
@@ -7,6 +8,9 @@ class NewPostForm(forms.ModelForm):
         exclude = ['user', 'pub_date','likes', 'unlikes','comments']
         
 class ProfileUpdateForm(forms.ModelForm):
+
+
     class Meta:
         model = User
-        fields = ['profile_pic']
+
+        exclude = ['posts', 'email','user_id']

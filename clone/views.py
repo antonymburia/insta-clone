@@ -31,8 +31,20 @@ def new_post(request):
 
 def profile(request):
     user = request.user
+    user = request.user
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save(commit=False)
+            
+            user.save()
+        # return redirect(profile)
+    else:
+        form = ProfileUpdateForm()
+    
 
-    return render(request, 'profile.html',{'user':user})
+
+    return render(request, 'profile.html',{'user':user,"form": form})
 
 
 

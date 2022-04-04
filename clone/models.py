@@ -10,7 +10,8 @@ class User(models.Model):
     last_name = models.CharField(max_length =30)
     email = models.EmailField()
     posts = models.ForeignKey('Post',on_delete=models.CASCADE,default=None)
-    profile_pic = models.ImageField(upload_to='profile/', blank=True)
+    profile_pic = CloudinaryField('image')
+    bio = models.TextField()
 
     @classmethod
     def get_users(cls):

@@ -68,12 +68,12 @@
       </div>
 
       <div class="row">
-       <div class="col-md-6">
+       <div class="col-md-4">
         <div class="sugestions">
          <b>Suggestions for you</b>
         </div>
        </div>
-       <div class="col-md-6">
+       <div class="col-md-4">
         <div class="follow">
          <b>see all</b>
         </div>
@@ -82,13 +82,13 @@
 
       {% for user in users%}
       <div class="row">
-       <div class="col-md-6">
+       <div class="col-md-4">
         <div class="suggs">
          <img src="" alt="sugg">
          <b class="suggs">{{user.username}}</b>
         </div>
        </div>
-       <div class="col-md-6">
+       <div class="col-md-4">
         <a href="">view profile</a>
        </div>
       </div>
@@ -133,6 +133,7 @@
 
  svg {
   margin-top: 1%;
+  
  }
 
  .desc {
@@ -163,6 +164,10 @@
   padding-top: 5%;
   margin-top: 5%;
   display: flex;
+ }
+ a{
+  text-decoration: none;
+  font-weight: 800;
  }
 </style>
 
