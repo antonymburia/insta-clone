@@ -5,6 +5,7 @@ from cloudinary.models import CloudinaryField
 
 
 class User(models.Model):
+    user_id = models.BigAutoField(primary_key=True,)
     first_name = models.CharField(max_length =30)
     last_name = models.CharField(max_length =30)
     email = models.EmailField()
@@ -80,19 +81,7 @@ class Like(models.Model):
         return self.likes
 
 
-class Unlike(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
-    post = models.ForeignKey(Post,on_delete=models.CASCADE,default=None)
-    unlikes = models.IntegerField(blank=True)
 
-    def add_unlike(self):
-        self.save()
-
-
-    def __str__(self):
-        return self.unlikes
-
-    
 
     
 

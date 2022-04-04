@@ -5,13 +5,13 @@ from django.contrib.auth import logout,login
 from .forms import NewPostForm,ProfileUpdateForm
 from .models import User,Post,Comment,Like
 from django.core.checks import messages
-
+from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
     posts = Post.all_posts()
-    users = User.get_users()
+    users = User.objects.all()
     return render(request,'index.html',{'posts':posts, 'users':users})
 
 @login_required(login_url='/accounts/login/')
