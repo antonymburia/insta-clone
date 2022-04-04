@@ -14,18 +14,18 @@ def home(request):
     users = User.objects.all()
     return render(request,'index.html',{'posts':posts, 'users':users})
 
-def register(request):
-    if request.method == 'POST':
-        form = NewPostForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
-        return redirect(profile)
+# def register(request):
+#     if request.method == 'POST':
+#         form = NewPostForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.save()
+#         return redirect(profile)
 
-    else:
-        form = CreateUserForm()
+#     else:
+#         form = CreateUserForm()
     
-    return render(request,'registration/registration_form.html', {'form':form})
+#     return render(request,'registration/registration_form.html', {'form':form})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):

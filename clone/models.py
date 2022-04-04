@@ -28,9 +28,10 @@ class Post(models.Model):
     content = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     post_image = CloudinaryField('image')
-    
+    liked = models.ManyToManyField(User, default=None,blank= True,related_name='liked')
+    author =  models.ForeignKey(User,on_delete=models.CASCADE,related_name='author')
 
-
+ 
     def save_post(self):
      self.save()
              
@@ -38,6 +39,10 @@ class Post(models.Model):
      self.delete()
     def __str__(self):
         return self.user
+    
+   
+
+
     
     @classmethod
     def all_posts(cls):
@@ -58,6 +63,16 @@ class Post(models.Model):
      post = cls.objects.filter(name__icontains=search_term)
      return post
 
+
+    @property
+    def like_count(self):
+        return self.liked.all().count()
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
+)
+
 class Comment(models.Model):
     post = models.ForeignKey('Post',related_name='comments',on_delete=models.CASCADE,default=None)
     comment = models.CharField(max_length = 200,  blank=True)
@@ -74,7 +89,7 @@ class Comment(models.Model):
 class Like(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
     post = models.ForeignKey(Post,on_delete=models.CASCADE,default=None)
-    likes = models.IntegerField(  blank=True)
+    like_value = models.CharField(choices=LIKE_CHOICES,  default='Like', blank=True, max_length=20)
 
     def add_like(self):
         self.save()
