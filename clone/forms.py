@@ -1,6 +1,6 @@
 from .models import  Post,Profile
 from django import forms
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 class NewPostForm(forms.ModelForm):
  
@@ -13,14 +13,14 @@ class CreateUserForm(forms.ModelForm):
         widgets = {
         'password': forms.PasswordInput(),
     }
-        model = Profile
+        model = User
         exclude = ['user_id','posts']
 
         
-class ProfileUpdateForm(forms.ModelForm):
+class UserUpdateForm(forms.ModelForm):
 
 
     class Meta:
-        model = Profile
+        model = User
 
-        exclude = ['posts', 'email','user_id']
+        fields = ['password', 'email','username', 'first_name', 'last_name']
