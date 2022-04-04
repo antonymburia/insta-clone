@@ -4,10 +4,12 @@ from tinymce.models import HTMLField
 from cloudinary.models import CloudinaryField
 
 
-class User(models.Model):
+class Profile(models.Model):
     user_id = models.BigAutoField(primary_key=True,)
     first_name = models.CharField(max_length =30)
     last_name = models.CharField(max_length =30)
+    username = models.CharField(max_length =30, blank=True)
+    password = models.CharField(max_length=50, default=0000, blank=False)
     email = models.EmailField()
     posts = models.ForeignKey('Post',on_delete=models.CASCADE,default=None)
     profile_pic = CloudinaryField('image')
