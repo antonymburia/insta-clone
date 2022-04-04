@@ -6,7 +6,7 @@ class NewPostForm(forms.ModelForm):
  
     class Meta:
         model = Post
-        exclude = ['author', 'pub_date','liked', 'comments']
+        exclude = [ 'pub_date','liked', 'comments']
 
 class CreateUserForm(forms.ModelForm):
     class Meta:
